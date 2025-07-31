@@ -10,7 +10,7 @@ import {motion} from 'motion/react'
 
 const Navbar = ({}) => {
 
-  const {setShowLogin, user , logout , isOwner , axios , setIsOwner} = useAppContext()
+  const {setShowLogin, user , logout , isOwner , axios , setIsOwner, searchQuery, setSearchQuery} = useAppContext()
 
 
   const location = useLocation(); 
@@ -59,9 +59,31 @@ const Navbar = ({}) => {
 
         <div className='hidden lg:flex items-center text-sm gap-2 border
         border-borerColor px-3 rounded-full max-w-56'>
-            <input type="text" className="py-1.5 w-full bg-transparent
-            outline-none placeholder-gray-500" placeholder="Search F1 Cars"/>
-            <img src={assets.search_icon} alt="search" />
+            <input
+            type="text"
+            value={searchQuery}
+            onChange={(e) => setSearchQuery(e.target.value)}
+            onKeyDown={(e) => {
+            if (e.key === 'Enter') {
+            navigate('/cars');
+            window.scrollTo({ top: 0, behavior: 'smooth' });
+          }
+  }}
+  className="py-1.5 w-full bg-transparent outline-none placeholder-gray-500"
+  placeholder="Search F1 Cars"
+/>
+            <img
+  src={assets.search_icon}
+  alt="search"
+  className="cursor-pointer"
+  onClick={() => {
+    if (location.pathname !== '/cars') {
+      navigate('/cars');
+    } else {
+      window.scrollTo({ top: 0, behavior: 'smooth' });
+    }
+  }}
+/>
         </div> 
 
 

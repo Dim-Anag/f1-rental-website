@@ -18,7 +18,7 @@ const Cars = () => {
   const pickupDate = searchParams.get('pickupDate')
   const returnDate = searchParams.get('returnDate')
 
-  const {cars, axios} = useAppContext()
+  const {cars, axios, searchQuery, setSearchQuery} = useAppContext()
 
   const [input, setInput] = useState('');
 
@@ -63,6 +63,13 @@ const Cars = () => {
     cars.length > 0 && !isSearchData && applyFilter()
   },[input, cars])
 
+  useEffect(() => {
+  if (searchQuery) {
+    setInput(searchQuery); 
+     setSearchQuery('');
+    
+  }
+  }, [searchQuery]);
 
 
 
