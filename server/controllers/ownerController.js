@@ -59,7 +59,7 @@ export const addCar = async (req, res)=>{
 export const getOwnerCars = async(req, res)=>{
     try {
        const {_id} = req.user;
-       const cars = await Car.find({owner: _id})
+       const cars = await Car.find({owner: _id, status: 'confirmed'})
        res.json({success: true , cars}) 
     } catch (error) {
       console.log(error.message);
@@ -122,7 +122,7 @@ export const getDashboardData = async(req , res)=>{
            return res.json({success: false , message: "Unauthorized"})  
         }
 
-        const cars = await Car.find({owner: _id})
+        const cars = await Car.find({owner: _id, status: 'confirmed'})
         const bookings = await Booking.find({ owner: _id }).populate('car').sort({ createdAt: -1 });
 
         const pendingBookings = await Booking.find({owner: _id , status : "pending"})
