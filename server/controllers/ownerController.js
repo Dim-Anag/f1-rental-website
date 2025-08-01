@@ -47,7 +47,7 @@ export const addCar = async (req, res)=>{
         
         const image = optimizedImageUrl;
         await Car.create({...car, owner: _id, image})
-        res.json({success: true , message: "Car Added"})
+        res.json({success: true , message: "Car Added Status : Pending!!! Approximately 24 hours needed!"})
 
     } catch (error) {
         console.log(error.message);
