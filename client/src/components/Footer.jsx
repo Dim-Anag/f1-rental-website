@@ -91,7 +91,7 @@ const Footer = () => {
                     <ul className='mt-3 flex flex-col gap-2 text-sm'>
                         <li>Thessaloniki, Greece</li>
                         <li>+30 2310 000001</li>
-                        <li>info@f1rental.com</li>
+                        <li>danagnostou.98@gmail.com</li>
                         
                     </ul>
                 </div>
