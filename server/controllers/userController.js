@@ -13,8 +13,23 @@ export const registerUser = async (req, res)=>{
     try {
         const {name , email , password} = req.body
 
-        if(!name || !email || !password || password.length <8){
-            return res.json({success: false , message:'Please fill all the required areas'})
+        // Validate name
+        if (!name || name.trim() === "") {
+            return res.json({ success: false, message: 'Name is required' });
+        }
+
+        // Validate email
+        if (!email || email.trim() === "") {
+            return res.json({ success: false, message: 'Email is required' });
+        }
+
+        // Validate password
+        if (!password) {
+            return res.json({ success: false, message: 'Password is required' });
+        }
+
+        if (password.length < 8) {
+            return res.json({ success: false, message: 'Password must be at least 8 characters long' });
         }
 
         const userExists = await User.findOne({email})
